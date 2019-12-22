@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>2020總統偏好</title>
+    <link rel="stylesheet" type="text/css" href="./src/jquery.quiz.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+TC:200,300,400,500,600,700,900&display=swap&subset=chinese-traditional" rel="stylesheet">
+</head>
+
+<body>
+    <div id="quiz">
+        <div id="flag-logo">
+            <img id="flag" src="./img/FLAG.svg" alt="">
+        </div>
+        <div id="quiz-header">
+            <h1 class=quiz-header-h1>2020總統「你」投給誰？</h1>
+            <p class=quiz-header-p1>你有多少藍橘綠？</pclass=quiz-header-h1>
+                <p class=quiz-header-p2><a id="quiz-home-btn">重頭再來</a></p>
+        </div>
+        <div id="quiz-start-screen">
+            <!--<p class="quiz-start-screen-p"><a href="#" id="quiz-start-btn" class="quiz-button">Start</a></p>-->
+            <button type="button" id="quiz-start-btn" class="quiz-button"><img id="quiz-start-btn-img" src="./img/Stamp.png" alt="Stamp"></button>
+        </div>
+        <input type="hidden" id="kmtScore" value="0" />
+        <input type="hidden" id="dppScore" value="0" />
+        <input type="hidden" id="pfpScore" value="0" />
+        <input type="hidden" id="otrScore" value="0" />
+    </div>
+
+
+
+
+    <script src="./src/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+    <script>
+        // And for a doughnut chart
+        function trigger_chart(a, b, c, d) {
+            var ctx = $('#myChart');
+            var data = {
+                datasets: [{
+                    data: [a, b, c, d],
+                    backgroundColor: [
+                        '#8adaf4', '#86f0a9', '#fcc067', 'brown'
+                    ],
+                    label: 'Dataset 1'
+                }],
+
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: [
+                    '藍KMT',
+                    '綠DPP',
+                    '橘PFP',
+                    '西瓜'
+                ]
+            };
+            var options = {
+                color: [
+                    '#8adaf4', /*blue*/
+                    '#86f0a9', /*green*/
+                    '#fcc067', /*orange*/
+                    'brown'
+
+                ]
+
+            };
+            var myDoughnutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: data,
+                options: options
+            });
+        }
+    </script>
+    <script src="./src/jquery.quiz.js"></script>
+    <script>
+        $('#quiz').quiz({
+            //resultsScreen: '#results-screen',
+            //counter: false,
+            //homeButton: '#custom-home',
+            counterFormat: 'Question %current of %total',
+            questions: [{
+                'q': '口號',
+                'options': [
+                    "2020臺灣要贏，Let's Win!",
+                    "藍綠推兩邊，人民擺中間",
+                    "臺灣安全，人民有錢",
+                    "誰來都一樣"
+                ],
+                'correctIndex': 0,
+                'kmtIndex': 2,
+                'dppIndex': 0,
+                'pfpIndex': 1,
+                'otherIndex': 3,
+                'correctResponse': '投票成功',
+                'incorrectResponse': '投票成功'
+            }, {
+                'q': '資歷',
+                'options': [
+                    "3年總統",
+                    "3月市長",
+                    "4年省長",
+                    "尋常百姓"
+                ],
+                'correctIndex': 0,
+                'kmtIndex': 1,
+                'dppIndex': 0,
+                'pfpIndex': 2,
+                'otherIndex': 3,
+                'correctResponse': '投票成功',
+                'incorrectResponse': '投票成功'
+            }, {
+                'q': 'ROC與ROPC',
+                'options': [
+                    "坐下來談兩岸關係，臺灣命運靠臺灣人掌握",
+                    "兩岸目前不存在統一或獨立的條件，反對台獨反對一國兩治",
+                    "拒絕一國兩治，中國民國臺灣是社會最大共識",
+                    "關係不重要，有錢賺就好"
+                ],
+                'correctIndex': 0,
+                'kmtIndex': 2,
+                'dppIndex': 1,
+                'pfpIndex': 0,
+                'otherIndex': 3,
+                'correctResponse': '投票成功',
+                'incorrectResponse': '投票成功'
+            }, {
+                'q': '育兒政策',
+                'options': [
+                    "0到6歲國家幫忙養",
+                    "0到6歲國家跟你一起養",
+                    "小孩自己養",
+                    "幼兒學前特別扣除額上調18萬"
+                ],
+                'correctIndex': 0,
+                'kmtIndex': 0,
+                'dppIndex': 1,
+                'pfpIndex': 3,
+                'otherIndex': 2,
+                'correctResponse': '投票成功',
+                'incorrectResponse': '投票成功'
+            }, {
+                'q': '能源',
+                'options': [
+                    "發展核能等之乾淨能源，能源充裕、穩定不中斷，且價格平穩合理",
+                    "主張非核家園，全面廢除核能發電，力推能源轉型",
+                    "保有核能，反對核四，企業節能減碳",
+                    "有電就好"
+                ],
+                'correctIndex': 0,
+                'kmtIndex': 0,
+                'dppIndex': 1,
+                'pfpIndex': 2,
+                'otherIndex': 3,
+                'correctResponse': '投票成功',
+                'incorrectResponse': '投票成功'
+            }, {
+                'q': '教育',
+                'options': [
+                    "國民義務教育年齡向下延伸3年",
+                    "雙語教育，鼓勵交換學生",
+                    "就學貸款利息再展期",
+                    "讀好書，好就業"
+                ],
+                'correctIndex': 0,
+                'kmtIndex': 1,
+                'dppIndex': 2,
+                'pfpIndex': 0,
+                'otherIndex': 3,
+                'correctResponse': '投票成功',
+                'incorrectResponse': '投票成功'
+            }, {
+                'q': '形象',
+                'options': [
+                    "千金大小姐",
+                    "住豪宅庶民",
+                    "不認輸阿伯",
+                    "人就好"
+                ],
+                'correctIndex': 0,
+                'kmtIndex': 1,
+                'dppIndex': 0,
+                'pfpIndex': 2,
+                'otherIndex': 3,
+                'correctResponse': '投票成功',
+                'incorrectResponse': '投票成功'
+            }, {
+                'q': '政治',
+                'options': [
+                    "特偵組再成立",
+                    "主推轉型正義",
+                    "雙首長制轉為內閣制",
+                    "政治非凡人之事"
+                ],
+                'correctIndex': 0,
+                'kmtIndex': 0,
+                'dppIndex': 1,
+                'pfpIndex': 2,
+                'otherIndex': 3,
+                'correctResponse': '投票成功',
+                'incorrectResponse': '投票成功'
+            }, {
+                'q': '青年',
+                'options': [
+                    "青年基地、投資青年創業、融資青年創業",
+                    "解決青年貧窮感，低率貸款、留才補助、勞保機制革新",
+                    "成立青年事務委員會、青年網路對話平台與召開青年論壇",
+                    "青年人就好好做事，有天就會出頭"
+                ],
+                'correctIndex': 0,
+                'kmtIndex': 1,
+                'dppIndex': 0,
+                'pfpIndex': 2,
+                'otherIndex': 3,
+                'correctResponse': '投票成功',
+                'incorrectResponse': '投票成功'
+            }, {
+                'q': '政見發表金句',
+                'options': [
+                    "只做一任，撥亂反正 X 3",
+                    "中華民國萬歲 X 3",
+                    "庶民最痛的是什麼？有人假裝是他們，拿他們來消費，拿來當選舉工具",
+                    "既無民調，要維持格調"
+                ],
+                'correctIndex': 0,
+                'kmtIndex': 1,
+                'dppIndex': 2,
+                'pfpIndex': 0,
+                'otherIndex': 3,
+                'correctResponse': '投票成功',
+                'incorrectResponse': '投票成功'
+            }]
+        });
+    </script>
+</body>
+
+</html>
