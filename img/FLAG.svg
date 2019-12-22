@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <rect width="900" height="600" fill="#000095"/>
+   <path id="four_rays" d="M510,300L450,525L390,300L450,75ZM450,360L675,300L450,240L225,300Z" fill="#fff"/>
+   <use xlink:href="#four_rays" transform="rotate(30 450 300)"/>
+   <use xlink:href="#four_rays" transform="rotate(60 450 300)"/>
+   <circle cx="450" cy="300" r="127.5" fill="#000095"/>
+   <circle cx="450" cy="300" r="112.5" fill="#fff"/>
+</svg>
